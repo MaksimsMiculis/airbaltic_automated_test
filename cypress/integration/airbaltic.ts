@@ -94,14 +94,14 @@ describe("Test for airbaltic.lv", () => {
         // for (let i = 1; i < counter; i++) {
         cy.get(root.body.get_banner).each((theElement, row) => {
 
-            //Get suggested flights
-            //Get Depart
+            //get suggested flights
+            //get depart
             depart = theElement.find(root.body.find_destination).text();
             cy.log("depart: " + depart)
-            
+            //get origin
             arrive = theElement.find(root.body.find_origin).text();
             cy.log("arrive: " + arrive)
-            
+            //get price
             price = theElement.find(root.body.find_price).text();
             cy.log("price: " + price);
 
