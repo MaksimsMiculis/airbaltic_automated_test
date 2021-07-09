@@ -97,24 +97,19 @@ describe("Test for airbaltic.lv", () => {
             //Get suggested flights
             //Get Depart
             depart = theElement.find(root.body.find_destination).text();
-            //not you can use article
             cy.log("depart: " + depart)
-            // });
-
-            // cy.get(':nth-child(2) > .wrap > .item-wrapper > .VueCarousel > .VueCarousel-wrapper > .VueCarousel-inner > .VueCarousel-slide-active > :nth-child(' + counter + ') > .info > .content > .left-block > .origin').then((theElement) => {
+            
             arrive = theElement.find(root.body.find_origin).text();
-            //not you can use article
             cy.log("arrive: " + arrive)
-            // });
-
-            // cy.get(':nth-child(2) > .wrap > .item-wrapper > .VueCarousel > .VueCarousel-wrapper > .VueCarousel-inner > .VueCarousel-slide-active > :nth-child(' + counter + ') > .info > .content > .price-block > .number').then((theElement) => {
+            
             price = theElement.find(root.body.find_price).text();
-            //not you can use article
             cy.log("price: " + price);
 
 
-            //Write parsed data into json object
-            suggestedflightJson.flightInformation.push({ "depart": depart, "arrive": arrive, "price": price });
+            //Write parsed data into json object if price is < 50 euro (economy)
+            if (price < 50) {
+                suggestedflightJson.flightInformation.push({ "depart": depart, "arrive": arrive, "price": price });
+            }
 
         }).then(() => {
             //Step 16 - Print filled in json
